@@ -1,20 +1,29 @@
 package ru.tsarev.hrinterviews.entity;
 
 import jakarta.persistence.*;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Value;
 import ru.tsarev.hrinterviews.enums.CandidateStatus;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Candidate")
 public class Candidate extends AbstractEntity {
+
+    @NotBlank
     private String name;
-    private CandidateStatus candidateStatus;
+
+    @NotNull
+    @Enumerated(EnumType.ORDINAL)
+    private CandidateStatus candidateStatus = CandidateStatus.READY;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidate")
-    private List<Interview> interviews = new ArrayList<>();
+    private List<Interview> interviews;
 }

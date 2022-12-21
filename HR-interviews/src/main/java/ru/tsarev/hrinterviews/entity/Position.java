@@ -3,23 +3,26 @@ package ru.tsarev.hrinterviews.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.ArrayList;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Position")
 public class Position extends AbstractEntity {
+
+    @NotBlank
     private String name;
+
     @ManyToOne
-    @JoinColumn(name = "department_id")
+    @JoinColumn
+    @NotNull
     private Department department;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "position")
-    private List<Interviewer> interviewers = new ArrayList<>();
+    private List<Interviewer> interviewers;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "position")
-    private List<Vacancy> vacancies = new ArrayList<>();
+    private List<Vacancy> vacancies;
 }
