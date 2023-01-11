@@ -12,12 +12,12 @@ import java.util.List;
 @Entity
 public class Vacancy extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @NotNull
     private Position position;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacancy")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vacancy", fetch = FetchType.LAZY)
     private List<Interview> interviews;
 
     @NotBlank

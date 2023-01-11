@@ -15,14 +15,14 @@ public class Position extends AbstractEntity {
     @NotBlank
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @NotNull
     private Department department;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "position")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "position", fetch = FetchType.LAZY)
     private List<Interviewer> interviewers;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "position")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "position", fetch = FetchType.LAZY)
     private List<Vacancy> vacancies;
 }

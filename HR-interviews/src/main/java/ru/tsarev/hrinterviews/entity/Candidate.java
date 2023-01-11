@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 import ru.tsarev.hrinterviews.enums.CandidateStatus;
 
 
@@ -24,6 +23,6 @@ public class Candidate extends AbstractEntity {
     @Enumerated(EnumType.ORDINAL)
     private CandidateStatus candidateStatus = CandidateStatus.READY;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidate")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "candidate", fetch = FetchType.LAZY)
     private List<Interview> interviews;
 }

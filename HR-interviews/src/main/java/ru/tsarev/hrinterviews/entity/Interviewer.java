@@ -15,11 +15,11 @@ public class Interviewer extends AbstractEntity {
     @NotBlank
     private String name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn
     @NotNull
     private Position position;
 
-    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, mappedBy = "interviewers")
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
     private List<Interview> interviews;
 }

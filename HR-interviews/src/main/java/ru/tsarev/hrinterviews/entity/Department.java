@@ -14,6 +14,6 @@ public class Department extends AbstractEntity {
     @NotBlank
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "department", fetch = FetchType.LAZY)
     private List<Position> positions;
 }
