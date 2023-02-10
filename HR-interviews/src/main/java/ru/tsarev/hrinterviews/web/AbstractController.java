@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
-@RestController
+
 public abstract class AbstractController<T extends AbstractEntity> {
     private final AbstractRepository<T> repository;
 
